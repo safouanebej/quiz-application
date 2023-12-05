@@ -18,11 +18,13 @@ public class QuizController {
 
     @GetMapping("/questions")
     public List<Question> getAllQuestions() {
+        // Provide the frontend with all the questions
         return quizService.getAllQuestions();
     }
 
     @PostMapping("/submit")
     public QuizResult submitAnswers(@RequestBody List<QuizAnswer> userAnswers) {
+        // Evaluate the user answers, calculate the score of the quiz and provide the frontend with the quiz result
         return quizService.submitAnswers(userAnswers);
     }
 }

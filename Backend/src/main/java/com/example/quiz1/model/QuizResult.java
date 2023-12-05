@@ -9,26 +9,6 @@ public class QuizResult {
     private String percentage;
     private List<Question> wrong;
 
-    public int getTotalscore() {
-        return totalscore;
-    }
-
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
-
-    public int getWrongAnswers() {
-        return wrongAnswers;
-    }
-
-    public String getPercentage() {
-        return percentage;
-    }
-
-    public List<Question> getWrong() {
-        return wrong;
-    }
-
     public QuizResult(int totalscore, int correctAnswers, int wrongAnswers, String percentage, List<Question> wrong) {
         this.totalscore = totalscore;
         this.correctAnswers = correctAnswers;
@@ -55,5 +35,25 @@ public class QuizResult {
 
     public void setWrong(List<Question> wrong) {
         this.wrong = wrong;
+    }
+
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public int getWrongAnswers() {
+        return wrongAnswers;
+    }
+
+    public String getPercentage() {
+        return percentage;
+    }
+
+    public List<Question> getWrong() {
+        return wrong;
+    }
+
+    public int getTotalscore() {
+        return totalscore;
     }
 }

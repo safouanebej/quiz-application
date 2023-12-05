@@ -1,22 +1,33 @@
-.App {
-  background-color: #c2571a;
-  color : white;
-  display : flex;
-  justify-content: space-evenly;
-  width: 575px;
-  height: min-content;
-  padding: 30px 50px;
-  box-shadow: 10px 10px 42px 0px lightcoral;
-  border-radius: 10px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }
-button {
-  cursor: pointer;
-  background-color: white;
-  color: #c2571a;
-  border: none;
-  padding: 5px;
-  border-radius: 7px;
-  font-size: 18px;
-  font-weight: bold;
-  width: 100%;
+body{
+  background-image: url('../../../Quiz1/Frontend/src/Components/Images/BackGround.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3aaccb;
+  height: 100vh;
+  margin: 0;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 700px;
+  width: 700px;
+  background-color: #d4d9db;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+
+

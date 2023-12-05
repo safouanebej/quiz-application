@@ -20,6 +20,7 @@ public class QuizService {
     }
 
     private void initializeQuestions() {
+        // Initialize the questions
         questions = new ArrayList<>( List.of(
                 new Question(1,"What does JVM stand for?", List.of("Java Virtual Machine", "Java Visual Machine", "Java Virtual Memory", "Java Visual Memory"), "Java Virtual Machine",100),
                 new Question(2,"Which keyword is used for the inheritance of classes and interfaces in Java?", List.of("extend", "inherits", "extends", "implements"), "extends",100),
@@ -33,7 +34,7 @@ public class QuizService {
                         "String str2 = new String(\"Java\");" +
                         "System.out.println(str1 == str2);",
                         List.of("true", "false", "Compile error", "Runtime error"),
-                        "false",75)));/*,new Question(6, "What is the purpose of the 'break' statement in Java?",
+                        "false",75),new Question(6, "What is the purpose of the 'break' statement in Java?",
                         List.of("To exit the program.", "To terminate a loop or switch statement and transfer control to the statement immediately following the loop or switch.", "To skip the current iteration of a loop.", "To create a new instance of a class."),
                         "To terminate a loop or switch statement and transfer control to the statement immediately following the loop or switch.", 75),
                 new Question(7, "Which method is called when an object is garbage collected in Java?",
@@ -72,20 +73,28 @@ public class QuizService {
                 new Question(18, "Which of the following is true about the 'StringBuilder' class in Java?",
                         List.of("It is synchronized.", "It is immutable.", "It is part of the java.util package.", "It is used to create mutable strings."),
                         "It is used to create mutable strings.", 25),
-                new Question(19, "What is the output of the following code snippet?\n\n" +
-                        "int x = 5;\n" +
-                        "System.out.println(x++);",
+                new Question(19, """
+                        What is the output of the following code snippet?
+                        int x = 5;
+                        System.out.println(x++);""",
                         List.of("5", "6", "Compiler error", "Runtime error"),
                         "5", 25),
-                new Question(20, "Which collection framework interface extends the Collection interface in Java?",
-                        List.of("Map", "Set", "List", "Queue"),
-                        "List", 25));*/
+                new Question(20, "(Bonus Question) Why do Java developers wear glasses?",
+                        List.of("To look cool", "To see the bytecode", "To debug vision errors", "Because they can't C#"),
+                        "Because they can't C#", 25)));
     }
 
     public List<Question> getAllQuestions() {
+        // Randomize the questions order
         Collections.shuffle(questions);
+        // This is a bonus Question
+        for(Question question : questions){
+            // Random order of answers
+            question.setOptions(question.randomizeOptions(question.getOptions()));
+        }
         return questions;
     }
+
     public Question getById(List<Question> questions,int id){
         if(questions.isEmpty()){
             return null;
@@ -105,12 +114,11 @@ public class QuizService {
         int correctAnswers = 0;
         int wrongAnswers = 0;
         List<Question> helper = new ArrayList<>();
-        //String helper="These are the questions that you didn't pass and its correct answers: \n";
         if(userAnswers.isEmpty()){
             return quizResult;
         }
-        for (int i = 0; i < questions.size(); i++) {
-            QuizAnswer quizAnswer = userAnswers.get(i);
+        // Calculate the score and count the number of wrong answers and correct ones
+        for (QuizAnswer quizAnswer : userAnswers) {
             Question que = getById(questions, quizAnswer.getId());
             if (quizAnswer.getAnswer().equals(que.getCorrectAnswer())) {
                 this.totalscore += que.getScore();
@@ -120,21 +128,17 @@ public class QuizService {
                 helper.add(que);
             }
         }
-
+        // Set all the parameters of the QuizResult
         double percentage = (double) correctAnswers / (correctAnswers + wrongAnswers) * 100;
         quizResult.setCorrectAnswers(correctAnswers);
         quizResult.setTotalscore(totalscore);
         quizResult.setWrongAnswers(wrongAnswers);
-        quizResult.setPercentage(String.valueOf(percentage)+ "%");
+        quizResult.setPercentage((percentage)+ "%");
         if(helper.isEmpty()){
             quizResult.setWrong(null);
         }else {
             quizResult.setWrong(helper);
-        }/*result = "Quiz Completed!\n" + "Total Score: " + totalscore + "\nCorrect Answers: " + correctAnswers
-        + "\nWrong Answers: " + wrongAnswers;
-        result += "\nPercentage of Correct Answers: " + percentage + "%\n";*/
-
-
+        }
         return quizResult;
     }
 }

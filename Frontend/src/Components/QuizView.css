@@ -1,25 +1,24 @@
-.container {
+.quiz-interface-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-  }
-  
-  .quiz-text {
+    height: 700px;
+    width: 700px;
+    background-color: #92c3d1;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px 1px #333;
+    padding: 20px;
+}
+
+.welcome-container {
     font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  .buttons-container {
-    display: flex;
+}
+
+.bullet-point-item::before {
+    content: '\2022';
+    align-items: center;
+    justify-content: center;
     gap: 10px;
-  }
-  
-  .button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  
+}
